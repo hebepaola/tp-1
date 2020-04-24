@@ -1,0 +1,98 @@
+<article>
+  
+<form  action="" id="formulario" method="POST" name="formulario"  >
+ <label for="nombre">Nombre</label>
+  <input type="text" name="nombre" id="nombre">
+  <label for="apellido">Apellido</label>
+  <input type="text" name="apellido" id="apellido">
+  <label for="edad">Edad</label>
+  <input type="text" name="edad" id="edad" >
+  <label for="estudios"  >Estudios</label> 
+  <select name="estudios" id="estudios" >
+      <option value="">Seleccione</option>
+      <option value="1">Primario</option>
+      <option value="2">Secundario</option>
+      <option value="3" >Terciario</option>
+      <option value="4" >Universitario</option>
+      </select>
+      <input type="submit" value="submit" >
+  </form>
+    
+</article>
+
+<script>
+   var formulario= document.getElementById("formulario");
+   var nombre = document.getElementById  ("nombre").value;
+   var apellido = document.getElementById("apellido") .value;
+   var edad = document.getElementById("edad").value;
+   var estudios = document.getElementById("estudios").value;
+
+  formulario.addEventListener('submit',function(e){
+   e.preventDefault();
+  
+
+	 if(nombre=== ""|| nombre.length<2 ){
+    alert('debe poner su nombre y debe contener mas de 2 caracteres');
+    return 0;
+  }
+  if(apellido==="" || apellido.length<2 ){
+    alert('debe poner su apellido y debe contener mas de 2 caracteres');
+    return 0 ;
+  }
+  if(edad===""){
+    alert('debe poner la edad');
+   return 0;
+  }else{
+    if(edad<5){
+      alert('la edad debe ser mayor a 5');
+        return 0;
+  }
+  
+}
+  if(estudios===""){
+    alert('debe elegir una opción');
+    return 0;
+  }
+ var datos= new FormData(formulario);
+
+console.log(datos)
+console.log(datos.get('nombre'))
+console.log(datos.get('apellido'))
+
+  fetch("/src/api.php",{
+    method: "POST",
+    body: datos,
+  })
+  .then(res=>res.json())
+  .then(data =>{
+    console.log(data)
+
+  })
+
+  .then((res)=>{
+    if(res.ok){
+      return
+    }
+     const promesa=res.json();
+     return(
+       promesa
+    )
+
+  .then (
+    (data)=>{
+      
+      
+    if(data.error){
+      console.error(data.error);
+    }
+  })
+  
+})
+  .catch((error)=>{
+     console.error(error);
+  
+  });
+})
+    
+</script>
+  

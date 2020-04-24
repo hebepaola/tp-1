@@ -1,0 +1,14 @@
+{
+  "name": "pwd-2020.tp-1",
+  "description": "TP 1 de la materia PWD del Curza. Edición 2020.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:curza-uncoma/tp-1-base.git",
+  "author": "Luciano Graziani <lgraziani2712@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.14.0",
+    "prettier": "^2.0.2"
+  }
+}
